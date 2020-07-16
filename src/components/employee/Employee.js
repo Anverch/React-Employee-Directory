@@ -12,7 +12,12 @@ const employeeStyle = css`
 
 function Employee(props) {
   return (
-    <div className={employeeStyle}> {props.data.email}
+    <div className={employeeStyle}> 
+        <img src={props.data.picture.thumbnail} />
+        {`${props.data.name.first} ${props.data.name.last}`}
+        {props.data.cell}
+        {props.data.email}
+        {props.data.dob.date}
      
     </div>
   );
