@@ -1,5 +1,6 @@
 import React from "react";
 import { css } from 'emotion';
+import Directory from "../Directory";
 
 const inputStyle = css`
     text-align: center;
@@ -13,7 +14,7 @@ function Home() {
         <input />
       </div>
       <div>
-        
+        <Directory />
       </div>
     </div>
   );
