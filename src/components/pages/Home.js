@@ -1,9 +1,20 @@
 import React from "react";
+import { css } from 'emotion';
+
+const inputStyle = css`
+    text-align: center;
+    padding: 20px;
+    `
 
 function Home() {
   return (
     <div>
-      <h1>Home Page</h1>
+      <div className={inputStyle}>
+        <input />
+      </div>
+      <div>
+        
+      </div>
     </div>
   );
 }

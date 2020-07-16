@@ -2,12 +2,11 @@ import React from 'react';
 import { css } from 'emotion';
 
 const headerStyle = css`
-background-color: navy;
-color: white;
-text-align: center;
-border-bottom: 5px solid red;
-padding: 30px;
-`
+    background-color: navy;
+    color: white;
+    text-align: center;
+    border-bottom: 5px solid red;
+    padding: 30px;`
 
 
 export default class Header extends React.Component{
@@ -21,7 +20,5 @@ export default class Header extends React.Component{
                 Click on carrots to filter by heading or use the search box to narrow your results
             </h2>
       </div>
-            
-      
     }
 }
