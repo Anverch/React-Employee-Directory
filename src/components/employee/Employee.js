@@ -22,9 +22,10 @@ const eachDivStyle = css`
 function Employee(props) {
 
   const birthdate = (props.data.dob.date).slice(0, 10);
+  const email = props.data.email;
   
+  // <div><span>Name</span><span>cell</span><span>email</span><span>DOB</span></div>
   return (
-    // <div><span>Name</span><span>cell</span><span>email</span><span>DOB</span></div>
     <div className={employeeStyle}> 
       <div className={eachDivStyle}>
         <img src={props.data.picture.thumbnail} />
@@ -35,8 +36,8 @@ function Employee(props) {
       <div className={eachDivStyle}>
         {props.data.cell}
       </div>
-      <a className={eachDivStyle}>
-        {props.data.email}
+      <a className={eachDivStyle} href="email" >
+        {email}
       </a>
       <div className={eachDivStyle}>
         {birthdate}
