@@ -23,7 +23,7 @@ class Home extends React.Component{
      return (
        <div>
          <div className={inputStyle}>
-           <input />
+           <input type="search" placeholder="Search" />
          </div>
          <div>
            <Directory data={this.state.employees} />
