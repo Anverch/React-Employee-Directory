@@ -30,7 +30,8 @@ class Home extends React.Component{
     employees: [],
     loading: true,
     searchText: "",
-    results: []
+    results: [],
+    sortingOrder: 0
   }
   async componentDidMount(){
     const users = await api.getUsers();
@@ -51,6 +52,7 @@ class Home extends React.Component{
       if ((item.cell.replace(" ", "")).includes(searchText)){
         return item
       }
+      return undefined
     }).filter(item=>item !==undefined)
     this.setState({
       results: results
@@ -58,10 +60,50 @@ class Home extends React.Component{
   }
 
   handleInput=(e)=>{
-    console.log(e);
     this.search((e.target.value || " ").replace(" ", "").toLowerCase());
   }
 
+  sort=(sortText)=>{
+    const {results, sortingOrder} = this.state;
+    let result = [];
+    if (sortText === "name") {
+      if (sortingOrder ===0){
+        result = results.sort(this.compareName);
+        this.setState({sortingOrder: 1})
+      } else {
+        result = results.sort(this.compareDescending)
+        this.setState({sortingOrder: 0})
+      }
+    }
+    this.setState({
+      results: result
+    })
+  }
+
+  compareName=(a,b)=> {
+    if(a.name.first < b.name.first){
+    return -1;
+    }
+    if(a.name.first > b.name.first){
+    return 1;
+    }
+    return 0;
+    }
+  
+    compareDescending=(a,b)=> {
+      if(a.name.first > b.name.first){
+      return -1;
+      }
+      if(a.name.first < b.name.first){
+      return 1;
+      }
+      return 0;
+      }
+
+  handleSort=(e)=>{
+    console.log("Sorting" , e);
+    this.sort(e);
+  }
     render(){
      return ( 
        <div>
@@ -70,7 +112,7 @@ class Home extends React.Component{
          </div>
          <div className={headingRow}>
          <span className={eachDivStyle}></span>
-           <span className={eachDivStyle}>Name</span>
+           <span className={eachDivStyle} onClick={()=>this.handleSort("name")}>Name</span>
            <span className={eachDivStyle}>Cell</span>
            <span className={eachDivStyle}>Email</span>
            <span className={eachDivStyle}>DOB</span>
