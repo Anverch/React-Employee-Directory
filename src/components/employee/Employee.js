@@ -27,7 +27,7 @@ function Employee(props) {
   return (
     <div className={employeeStyle}> 
       <div className={eachDivStyle}>
-        <img src={props.data.picture.thumbnail} />
+        <img alt={email} src={props.data.picture.thumbnail} />
       </div>
       <div className={eachDivStyle}>
         {`${props.data.name.first} ${props.data.name.last}`}

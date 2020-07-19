@@ -1,12 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
 import Employee from './employee/Employee';
-
-// const directoryStyle = css`
-//     color: black;
-//     text-align: center;
-//     padding: 5px;
-//     `
 
 export default class Directory extends React.Component{
 
