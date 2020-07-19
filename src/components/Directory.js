@@ -11,6 +11,10 @@ const directoryStyle = css`
 export default class Directory extends React.Component{
 
     render(){
+        console.log("Directory home", this.props.data)
+        if(this.props.data===null || this.props.data.length===0){
+            return <div> No Results </div>
+        }
         /// transforming the date in the JSON to components 
         const employees = this.props.data.map(employee=> {
             /// returning an employee component for each 

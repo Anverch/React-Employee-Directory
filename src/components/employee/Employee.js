@@ -1,5 +1,6 @@
 import React from "react";
 import { css } from 'emotion';
+import moment from 'moment'
 
 const employeeStyle = css`
     text-align: center;
@@ -20,11 +21,9 @@ const eachDivStyle = css`
     `
 
 function Employee(props) {
-
-  const birthdate = (props.data.dob.date).slice(0, 10);
+  const birthday = moment((props.data.dob.date).slice(0, 10)).format("MM-DD-YYYY")
   const email = props.data.email;
   
-  // <div><span>Name</span><span>cell</span><span>email</span><span>DOB</span></div>
   return (
     <div className={employeeStyle}> 
       <div className={eachDivStyle}>
@@ -40,7 +39,7 @@ function Employee(props) {
         {email}
       </a>
       <div className={eachDivStyle}>
-        {birthdate}
+        {birthday}
       </div>
     </div>
   );

@@ -10,27 +10,53 @@ const inputStyle = css`
 class Home extends React.Component{
   state = {
     employees: [],
-    loading: true
+    loading: true,
+    searchText: "",
+    results: []
   }
   async componentDidMount(){
     const users = await api.getUsers();
     console.log(users);
     this.setState({
-      employees: users.data.results
+      employees: users.data.results,
+      results: users.data.results
     })
   }
-   render(){
-     return (
+
+  search=(searchText)=>{
+    const {employees} = this.state;
+    const results = employees.map(item=>{
+      const fullName = (item.name.first + item.name.last ).toLowerCase();
+      if (fullName.includes(searchText)){
+        return item
+      }
+      if ((item.cell.replace(" ", "")).includes(searchText)){
+        return item
+      }
+    }).filter(item=>item !==undefined)
+    this.setState({
+      results: results
+    })
+  }
+
+  handleInput=(e)=>{
+    console.log(e);
+    this.search((e.target.value || " ").replace(" ", "").toLowerCase());
+  }
+
+    render(){
+     return ( 
        <div>
          <div className={inputStyle}>
-           <input type="search" placeholder="Search" />
+           <input type="text" placeholder="Search" onChange={this.handleInput}></input>
          </div>
          <div>
-           <Directory data={this.state.employees} />
+           <Directory data={this.state.results} />
          </div>
        </div>
      );
    }
+   
 }
 
 export default Home;
