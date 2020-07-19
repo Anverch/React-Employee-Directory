@@ -7,6 +7,24 @@ const inputStyle = css`
     text-align: center;
     padding: 20px;
     `
+
+const headingRow = css`
+    text-align: center;
+    padding: 1px;
+    border-bottom: 1px solid white;
+    background-color: lightgray;
+    margin: auto; 
+    width: 90%;
+    display: flex;
+    flex-wrap: nowrap;
+    ` 
+const eachDivStyle = css`
+    margin: 10px;
+    text-align: center
+    display: block;
+    width: 220px;
+    font-weight: bold;
+    `  
 class Home extends React.Component{
   state = {
     employees: [],
@@ -49,6 +67,13 @@ class Home extends React.Component{
        <div>
          <div className={inputStyle}>
            <input type="text" placeholder="Search" onChange={this.handleInput}></input>
+         </div>
+         <div className={headingRow}>
+         <span className={eachDivStyle}></span>
+           <span className={eachDivStyle}>Name</span>
+           <span className={eachDivStyle}>Cell</span>
+           <span className={eachDivStyle}>Email</span>
+           <span className={eachDivStyle}>DOB</span>
          </div>
          <div>
            <Directory data={this.state.results} />
